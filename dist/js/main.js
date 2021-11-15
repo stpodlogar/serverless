@@ -5,24 +5,24 @@ document.querySelector('button').addEventListener('click', () => {
   });
   
   const getWeather = async (city) => {
-    // const urlDataObj = {
-    //     city: "fishers"
-    // };
-    // try {
-    //     // const dataStream = await fetch("./.netlify/serverless/get_coords", {
-    //     //     method: "POST",
-    //     //     body: JSON.stringify(urlDataObj)
-    //     // });
-    //     const dataStream = await fetch("./.netlify/serverless/get_weather")
-    //     const data = await dataStream.json();
-    //     return data;
-    // } catch (err) {
-    //     console.log(err);
-    // };
+    const urlDataObj = {
+        city: city
+    };
+    try {
+        const response = await fetch("./.netlify/functions/get_weather", {
+            method: "POST",
+            body: JSON.stringify(urlDataObj)
+        });
+        // const dataStream = await fetch("./.netlify/serverless/get_weather")
+        const data = await response.json();
+        console.log(data);
+    } catch (err) {
+        console.log(err);
+    };
   
-    const url = "./.netlify/functions/get_weather"
-    const response = await fetch(url);
-    const data = await response.json();
+    // const url = "./.netlify/functions/get_weather"
+    // const response = await fetch(url);
+    // const data = await response.json();
   
-    console.log(data);
+    // console.log(data);
   }
