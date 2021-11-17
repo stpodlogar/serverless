@@ -4,10 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serverless Functions</title>
-    <script defer src="js/main.js"></script>
+
+    <link href="css/site.css" rel="stylesheet">
 </head>
 <body>
-    <input type="text" id="location">
+    <input type="text" id="autocomplete" placeholder="Enter a place..." style="width: 700px;"/>
     <button type="submit">Submit</button>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjVRD_VwmDTm0tMk_O5g9vvJYq6mvcm4Q&libraries=places&callback=initAutocomplete" defer async>
+    </script>
+    <script>
+        let autocomplete;
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('autocomplete'), 
+                {
+                    types: ['cities'],
+                    fields: ['place_id', 'geometry', 'name']
+                });
+            autocomplete.addListener('place_changed', onPlaceChanged);
+        }
+
+        function onPlaceChanged() {
+            const place = autocomplete.getPlace();
+
+            if (!place.geometry) {
+                document.getElementById('autocomplete').placeholder = 'Enter a place...';
+            } else {
+                console.log('This happened')
+            }
+        }
+    </script>
+    <script defer src="js/main.js"></script>
 </body>
 </html>

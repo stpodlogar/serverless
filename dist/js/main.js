@@ -1,10 +1,10 @@
 
 document.querySelector('button').addEventListener('click', () => {
-    let city = document.querySelector('#location');
+    let city = document.querySelector('#autocomplete');
     getWeather(city.value)
   });
   
-  const getWeather = async (city) => {
+const getWeather = async (city) => {
     const urlDataObj = {
         city: city
     };
@@ -19,10 +19,36 @@ document.querySelector('button').addEventListener('click', () => {
     } catch (err) {
         console.log(err);
     };
-  
-    // const url = "./.netlify/functions/get_weather"
-    // const response = await fetch(url);
-    // const data = await response.json();
-  
-    // console.log(data);
-  }
+}
+
+// const searchElement = document.querySelector('[data-city-search]');
+// const searchBox = new google.maps.places.SearchBox(searchElement);
+// searchElement.addListener('places_changed', () => {
+//     const place = searchBox.getPlaces()[0];
+//     if (place === null) return;
+//     const latitude = place.geometry.location.lat();
+//     const longitude = place.geometry.location.lng();
+//     console.log(latitude, longitude);
+// })
+
+// let autocomplete;
+// function initAutocomplete() {
+//     autocomplete = new google.maps.places.Autocomplete(
+//         document.getElementById('autocomplete'), 
+//         {
+//             types: ['cities'],
+//             fields: ['place_id', 'geometry', 'name']
+//         });
+//     autocomplete.addListener('place_changed', onPlaceChanged);
+// }
+
+// function onPlaceChanged() {
+//     const place = autocomplete.getPlace();
+
+//     if (!place.geometry) {
+//         document.getElementById('autocomplete').placeholder = 'Enter a place...';
+//     } else {
+//         console.log('This happened')
+//     }
+// }
+
